@@ -1,26 +1,38 @@
 { pkgs ? import <nixpkgs> {} }:
 pkgs.mkShell {
-	
-  # name (default: nix-shell). Set the name of the derivation.
-  # name = "Docker Shell (Macos)";
-  	
-  # packages (default: []). Add executable packages to the nix-shell environment.
-  packages = with pkgs; [ lima colima docker ];
+  name = "docker on darwin";
 
-  # inputsFrom (default: []). Add build dependencies of the listed derivations to the nix-shell environment.
-  # inputsFrom = [ pkgs.hello ];
+  # packages (default: []). Add executable packages to the nix-shell environment.
+  packages = with pkgs; [
+    lima
+    colima
+    docker
+    lazydocker
+  ];
 
   # shellHook (default: ""). Bash statements that are executed by nix-shell.
   shellHook = ''
     echo -e "\e[1;33mDevelopment Environment\e[0;32m"
-    # add --version or some other call to list dev packages
 
-    lima --version
-    colima --version
-    darwin --version
-    
+    # useful docker aliases
+  	alias dcl='docker container ls --all'
+  	alias dil='docker image ls'
+  	alias dila='docker image ls --all'
+  	alias dir='docker image rm -f'
+  	alias dr='docker run -it '
+    if command -v fzf &>/dev/null; then
+      alias ds="docker stop $(docker ps --format \"\${FZF_DOCKER_PS_FORMAT}\" | fzf)"
+    fi
+    alias ld='lazydocker'
+
+    # start colima to make docker available
     colima start
 
-	echo -e "\e[0m"
+    # visual checks
+    lima --version
+    colima --version
+    alias | rg docker
+ 
+	  echo -e "\e[0m"
   '';
 }
