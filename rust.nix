@@ -2,12 +2,35 @@
 pkgs.mkShell {
     name = "rust";
 	# https://search.nixos.org/packages?channel=unstable
-    packages = with pkgs; [ cargo rustc ];
+    packages = with pkgs; [
+      cargo
+      rustc
+      rust-analyzer
+      rustfmt
+      clippy
+    ];
   	shellHook = ''
-    	echo -e "\e[1;33mDevelopment Environment\e[0;32m"
-    	# add --version or some other call to list dev packages
+
+      # helpers
+      function cargo-new(){
+        cargo new $@
+        cd $@
+        l
+      }
+
+      alias cn='cargo-new'
+      alias cr='cargo run'
+      alias ct='cargo test'
+      alias cc='cargo check'
+      
+      
+      # check env
+    	echo -e "\e[1;33m== Rust Development Shell ==\e[0;32m"
     	cargo --version
       rustc --version
+      rust-analyzer --version
+      rustfmt --version
+      clippy --version
 		  echo -e "\e[0m"
   	  '';
 }
