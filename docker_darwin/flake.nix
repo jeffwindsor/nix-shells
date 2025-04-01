@@ -11,15 +11,16 @@
       devShell = pkgs.mkShell {
         name = "docker";
 
-        # packages (default: []). Add executable packages to the nix-shell environment.
         packages = with pkgs; [
-          lima
-          colima
-          docker
-          lazydocker
+          lima  # Linux virtual machines (on macOS, in most cases)
+          colima  # Container runtimes with minimal setup
+          docker  # Open source project to pack, ship and run any application as a lightweight container
+          lazydocker  # Simple terminal UI for both docker and docker-compose
+          dive  # Tool for exploring each layer in a docker image
+          ctop  # Top-like interface for container metrics
         ];
 
-        # shellHook (default: ""). Bash statements that are executed by nix-shell.
+        # Bash statements that are executed by nix-shell.
         shellHook = ''
           echo -e "\e[1;94m == Development Environment =="
 
