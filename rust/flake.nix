@@ -27,9 +27,9 @@
           }
 
           alias cn='cargo-new'
-          alias cr='cargo run'
-          alias ct='cargo test'
-          alias cc='cargo check'
+          alias cr='clear && cargo run'
+          alias ct='clear && cargo test'
+          alias cc='clear && cargo check'
     
           echo -e "\e[1;94m == Development Environment =="
         	cargo --version
