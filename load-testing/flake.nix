@@ -3,24 +3,22 @@
     utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
-  outputs = {nixpkgs, utils, ... }: utils.lib.eachDefaultSystem (system:
+  outputs = { nixpkgs, utils, ... }: utils.lib.eachDefaultSystem (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       devShell = pkgs.mkShell {
-      	name = "k8s";
-      	packages = with pkgs; [
-          k9s
-          kustomize
-          kubectl
+        name = "Load-testing";
+        packages = with pkgs; [
+          vegeta   # Versatile HTTP load testing tool
+          k6       # Modern load testing tool,
         ];
+        
         shellHook = ''
           echo -e "\e[1;94m == Development Environment =="
-          # add --version or some other call to list dev packages
-          k9s version
-      		kustomize version
-      		kubectl version
+          vegeta --version
+          k6 --version
           echo -e "\e[0m"
         '';
       };

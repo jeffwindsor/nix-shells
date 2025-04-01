@@ -3,7 +3,7 @@
     utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
-  outputs = { self, nixpkgs, utils }: utils.lib.eachDefaultSystem (system:
+  outputs = { nixpkgs, utils, ... }: utils.lib.eachDefaultSystem (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
     in
