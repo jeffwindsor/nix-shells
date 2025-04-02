@@ -31,13 +31,19 @@
           alias ct='clear && cargo test'
           alias cc='clear && cargo check'
     
-          echo -e "\e[1;94m == Development Environment =="
+          echo -e "\e[1;94m == Rust Development Environment =="
         	cargo --version
           rustc --version
           rust-analyzer --version
           rustfmt --version
-          clippy --version
+          cargo clippy --version
+
+          # print out aliases
+          alias | rg "cargo"
     		  echo -e "\e[0m"
+
+          # open dotfiles in editor
+          "$EDITOR" "$DOTFILES"
     	  '';
       };
     }

@@ -28,12 +28,15 @@
 
         # shellHook (default: ""). Bash statements that are executed by nix-shell.
         shellHook = ''
-          echo -e "\e[1;94m == Development Environment =="
+          echo -e "\e[1;94m == Nix/Toml/Bash Development Environment =="
         	nixd --version
           taplo --version
           # shellcheck --version
           echo -e "bash-language-server $(bash-language-server --version)"
       		echo -e "\e[0m"
+
+          # open dotfiles in editor
+          "$EDITOR" "$DOTFILES"
         '';
       };
     }

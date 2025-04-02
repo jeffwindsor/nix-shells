@@ -21,11 +21,14 @@
       	];
 
        	shellHook = ''
-          echo -e "\e[1;94m == Development Environment =="
+          echo -e "\e[1;94m == Python Development Environment =="
           python --version
           pylsp --version
           pytest --version
           echo -e "\e[0m"
+
+          # open dotfiles in editor
+          "$EDITOR" "$DOTFILES"
       	'';
       };
     }

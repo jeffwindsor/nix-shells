@@ -22,8 +22,7 @@
 
         # Bash statements that are executed by nix-shell.
         shellHook = ''
-          echo -e "\e[1;94m == Development Environment =="
-
+        
           # useful docker aliases
         	alias dcl='docker container ls --all'
         	alias dil='docker image ls'
@@ -35,14 +34,18 @@
           fi
           alias ld='lazydocker'
 
+          echo -e "\e[1;94m == Docker Development Environment =="
+
           # start colima to make docker available
           colima start
 
           # visual checks
           lima --version
           colima --version
-          alias | rg docker
 
+          # print out aliases
+          alias | rg docker
+          
       	  echo -e "\e[0m"
         '';
       };
