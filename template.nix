@@ -22,7 +22,7 @@
           # list packages for the shell, here
         ];
         shellHook = ''
-          echo -e "\e[1;94m == Development Shell for {shell_name} =="
+          echo -e "\e[1;94m == {shell_name} development shell  =="
           # add information useful to the user, like pkg --version calls.
           echo -e "\e[0m"
         '';
