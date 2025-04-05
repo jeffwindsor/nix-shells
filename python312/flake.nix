@@ -26,9 +26,6 @@
           pylsp --version
           pytest --version
           echo -e "\e[0m"
-
-          # open dotfiles in editor
-          "$EDITOR" "$DOTFILES"
       	'';
       };
     }

@@ -56,9 +56,6 @@
           # print out aliases
           alias | rg "cargo"
     		  echo -e "\e[0m"
-
-          # open dotfiles in editor
-          "$EDITOR" "$DOTFILES"
     	  '';
       };
     }
