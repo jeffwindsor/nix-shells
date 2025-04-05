@@ -35,8 +35,6 @@
           echo -e "bash-language-server $(bash-language-server --version)"
       		echo -e "\e[0m"
 
-          # open dotfiles in editor
-          "$EDITOR" "$DOTFILES"
         '';
       };
     }
